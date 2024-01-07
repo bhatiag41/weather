@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import  CurrentWeather  from './components/search/current-weather/CurrentWeather';
 import './App.css';
 import Search from './components/search/search';
 
@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="container">
       <Search onSearchChange={handleOnSearchChange}/>
+      <CurrentWeather/>
     </div>
   );
 }
