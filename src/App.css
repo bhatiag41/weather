@@ -1,4 +1,10 @@
 .container{
   max-width: 1080px;
+  height: 100%;
   margin: 20px auto;
+  background:#252525;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 6px;
+  box-shadow: 10px -2px 20px 2px rgb(0 0 0 /30%);
 }
