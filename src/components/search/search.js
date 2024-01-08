@@ -24,13 +24,26 @@ const Search = ({ onSearchChange }) => {
         setSearch(searchData)
         onSearchChange(searchData)
     }
+    const customStyles = {
+        control: (provided, state) => ({
+            ...provided,
+            borderRadius: '5px',
+            border: '2px solid #ccc',
+            boxShadow: state.isFocused ? '0 0 0 2px #212121' : '#757575',
+        }),
+        option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isFocused ? '#212121' : null,
+            color: state.isFocused ? 'white' : null,
+        }),
+    }
   return (
    <AsyncPaginate
    placeholder="search for city"
    debounceTimeout={600}
    value={search}
    onChange={handleOnChange}
-
+   styles={customStyles}
    loadOptions={loadOptions}
 
    />

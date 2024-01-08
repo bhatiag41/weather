@@ -49,10 +49,10 @@ margin-left: 15px;
     align-items: center;
 }
 .daily-det-grid-item label:first-child{
-    color: #757575;
+    color: #bdbdbd;
 }
 .daily-det-grid-item label:last-child{
-    color: #212121;
+    color: #fefefe;
 }
 .para-row.top{
     /* background: rgba(255, 255, 255, 0.182); */

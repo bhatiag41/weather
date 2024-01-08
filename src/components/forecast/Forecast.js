@@ -7,20 +7,16 @@ import {
 } from "react-accessible-accordion";
 import "./Forecast.css";
 import React from "react";
-const week_days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thrusday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+const hours = [
+'00','03','06','09','12','15','18','21'
 ];
 const Forecast = ({ data }) => {
-  const dayinaweek = new Date().getDay();
-  const forecastday = week_days
-    .slice(dayinaweek, week_days.length)
-    .concat(week_days.slice(0, dayinaweek));
+  const dayinaweek = new Date().getHours();
+  console.log(dayinaweek)
+  const forecastday = hours
+    .slice(dayinaweek, hours.length)
+    .concat(hours.slice(0, dayinaweek));
+    console.log(forecastday)
   return (
     <>
                 <div className="para-row top">
