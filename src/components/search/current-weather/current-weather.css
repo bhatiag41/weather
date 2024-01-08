@@ -16,6 +16,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+   
+}
+.top{
+    margin: 1rem;
 }
 .bottom{
     flex-direction: column;
