@@ -24,14 +24,17 @@
 flex: 1 1;
 font: 600;
 margin-left: 15px;
+cursor: pointer;
 }
 .description{
     flex: 1 1;
     margin-right: 15px;
     text-align: right;
+    cursor: pointer;
 }
 .min-max{
     color: #757575;
+    cursor: pointer;
 }
 .daily-det-grid{
     grid-row-gap: 0;

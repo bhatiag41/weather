@@ -11,11 +11,12 @@ const hours = [
 '00','03','06','09','12','15','18','21'
 ];
 const Forecast = ({ data }) => {
-  const dayinaweek = new Date().getHours();
+  const currentDate = new Date();
+const dayinaweek = currentDate.getHours().toString().padStart(2, '0');
   console.log(dayinaweek)
   const forecastday = hours
-    .slice(dayinaweek, hours.length)
-    .concat(hours.slice(0, dayinaweek));
+  .slice(hours.indexOf(dayinaweek), hours.length)
+  .concat(hours.slice(0, hours.indexOf(dayinaweek)));
     console.log(forecastday)
   return (
     <>
@@ -33,7 +34,7 @@ const Forecast = ({ data }) => {
                     className="icon-small"
                     src={`icons/${item.weather[0].icon}.png`}
                   />
-                  <label className="day">{forecastday[idx]}</label>
+                  <label className="day">{forecastday[idx]}:00</label>
                   <label className="description">
                     {item.weather[0].description}
                   </label>

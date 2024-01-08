@@ -2,7 +2,8 @@
   max-width: 1080px;
   height: 100%;
   margin: 20px auto;
-  background:#252525;
+  background: rgb(33,33,33);
+  background: linear-gradient(0deg, rgba(33,33,33,1) 0%, rgba(37,37,37,1) 55%, rgba(117,117,117,1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 6px;
