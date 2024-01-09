@@ -8,11 +8,18 @@ import {
 import "./Forecast.css";
 import React from "react";
 const hours = [
-'00','03','06','09','00','15','18','21'
+'00','03','06','09','12','15','18','21'
 ];
 function convertTo12Hour(hour24) {
   const date = new Date(`2000-01-01T${hour24}:00:00`);
-  return date.toLocaleTimeString([], { hour: 'numeric', hour12: true });
+  
+  let options = { hour: 'numeric', minute: '2-digit', hour12: true };
+
+  if (hour24 === '00') {
+    options = { ...options, hour: '12' };
+  }
+
+  return date.toLocaleTimeString([], options);
 }
 const Forecast = ({ data }) => {
   const currentDate = new Date();
