@@ -18,7 +18,7 @@ function convertTo12Hour(hour24) {
   // Adjust the hour to 12-hour format
   const hour12 = date.getHours() % 12 || 12;
 
-  return date.toLocaleTimeString([], { ...options, hour: '2-digit' }).replace(/^(\d{1,2}):(\d{2}) (\w{2})$/, (_, h, m, period) => `${hour12}:${m} ${period}`);
+  return date.toLocaleTimeString([], { ...options, hour: '2-digit' }).replace(/^(\d{1,2}):(\d{2}) (\w{2})$/, (_, h, period) => `${hour12} ${period}`);
 
 }
 const Forecast = ({ data }) => {
