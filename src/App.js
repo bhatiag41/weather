@@ -8,7 +8,8 @@ const App = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [setCity] = useState('Your Location');
+  // eslint-disable-next-line no-unused-vars
+  const [city,setCity] = useState('Your Location');
 
   const handleOnSearchChange = async (searchData) => {
     const [lat, lon] = searchData.value.split(" ");
