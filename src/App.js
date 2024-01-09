@@ -8,7 +8,7 @@ const App = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [city, setCity] = useState('Your Location');
+  const [setCity] = useState('Your Location');
 
   const handleOnSearchChange = async (searchData) => {
     const [lat, lon] = searchData.value.split(" ");
@@ -32,7 +32,6 @@ const App = () => {
 
   const handleRefresh = () => {
     setLoading(true);
-    // Trigger a new fetch based on the city or geolocation
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -48,7 +47,8 @@ const App = () => {
   useEffect(() => {
     // Initial fetch based on geolocation
     handleRefresh();
-  }, [city]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>

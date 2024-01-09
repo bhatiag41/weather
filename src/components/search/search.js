@@ -30,7 +30,7 @@ const Search = ({ onSearchChange }) => {
             borderRadius: '5px',
             border: '2px solid #ccc',
             boxShadow: state.isFocused ? '0 0 0 2px #212121' : '#757575',
-            width:'100%',
+            width:'50vw',
             margin:"1rem"
         
         }),

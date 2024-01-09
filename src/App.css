@@ -6,7 +6,7 @@
   background: linear-gradient(0deg, rgba(33,33,33,1) 0%, rgba(37,37,37,1) 55%, rgba(117,117,117,1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 6px;
+  border-radius: 10px;
   box-shadow: 10px -2px 20px 2px rgb(0 0 0 /30%);
 }
 .btn{
@@ -23,7 +23,6 @@ margin: 1rem;
 button:hover {
   background-position: right center;
   background-size: 200% auto;
-  -webkit-animation: pulse 2s infinite;
   animation: pulse512 1.5s infinite;
  }
  
@@ -43,7 +42,7 @@ button:hover {
  .inner{
   display: flex;
   justify-content: space-between;
-  margin: 1rem;
+  /* margin: 1rem; */
  }
  .cont{
   display: flex;

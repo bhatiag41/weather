@@ -10,6 +10,10 @@ import React from "react";
 const hours = [
 '00','03','06','09','12','15','18','21'
 ];
+function convertTo12Hour(hour24) {
+  const date = new Date(`2000-01-01T${hour24}:00:00`);
+  return date.toLocaleTimeString([], { hour: 'numeric', hour12: true });
+}
 const Forecast = ({ data }) => {
   const currentDate = new Date();
 const dayinaweek = currentDate.getHours().toString().padStart(2, '0');
@@ -34,7 +38,7 @@ const dayinaweek = currentDate.getHours().toString().padStart(2, '0');
                     className="icon-small"
                     src={`icons/${item.weather[0].icon}.png`}
                   />
-                  <label className="day">{forecastday[idx]}:00</label>
+                  <label className="day">{convertTo12Hour(forecastday[idx])}</label>
                   <label className="description">
                     {item.weather[0].description}
                   </label>
