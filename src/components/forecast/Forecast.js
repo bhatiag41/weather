@@ -8,7 +8,7 @@ import {
 import "./Forecast.css";
 import React from "react";
 const hours = [
-'00','03','06','09','12','15','18','21'
+'12','03','06','09','12','15','18','21'
 ];
 function convertTo12Hour(hour24) {
   const date = new Date(`2000-01-01T${hour24}:00:00`);
