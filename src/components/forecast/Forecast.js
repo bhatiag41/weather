@@ -12,14 +12,12 @@ const hours = [
 ];
 function convertTo12Hour(hour24) {
   const date = new Date(`2000-01-01T${hour24}:00:00`);
-  
-  const options = { hour: 'numeric' };
+  const options = { hour: 'numeric'};
 
   // Adjust the hour to 12-hour format
   const hour12 = date.getHours() % 12 || 12;
 
-  return date.toLocaleTimeString([], { ...options, hour: '2-digit' }).replace(/^(\d{1,2}):(\d{2}) (\w{2})$/, (_, h, period) => `${hour12} ${period}`);
-
+  return date.toLocaleTimeString('en-US', {options, hour: '2-digit' }).replace(/^(\d{1,2}):(\d{2}) (\w{2})$/, (_, h, period) => `${hour12} ${period}`);
 }
 const Forecast = ({ data }) => {
   const currentDate = new Date();
