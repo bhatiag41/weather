@@ -1,37 +1,82 @@
-import  CurrentWeather  from './components/search/current-weather/CurrentWeather';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 import Search from './components/search/search';
-import { useState } from 'react';
+import CurrentWeather from './components/search/current-weather/CurrentWeather'
 import Forecast from './components/forecast/Forecast';
-import NewApi,{latitude,longitude} from './NewApi';
+import './App.css'
 
-function App() {
-  const [currentWeather,setCurrentWeather]=useState(null)
-  const [forecast,setforecast]=useState(null)
-  const handleOnSearchChange = (searchData)=>{
-  const [lat,lon]= searchData.value.split(" ");
+const App = () => {
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [city, setCity] = useState('Your Location');
 
-  const CurrentWeatherFetch= fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=e672e000839281b415d889d2a4fc94ee&units=metric`)
-  const ForecastFetch= fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=e672e000839281b415d889d2a4fc94ee&units=metric`)
- Promise.all([CurrentWeatherFetch,ForecastFetch])
- .then(async(response)=>{
-  const weatherResponse=await response[0].json();
-  const forecastResponse=await response[1].json();
-  setCurrentWeather({city:searchData.label,...weatherResponse})
-  setforecast({city:searchData.label,...forecastResponse})
- })
-.catch((err=>console.log(err)));
-}
-// console.log(currentWeather);
-console.log(forecast);
+  const handleOnSearchChange = async (searchData) => {
+    const [lat, lon] = searchData.value.split(" ");
+
+    try {
+      const currentWeatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=e672e000839281b415d889d2a4fc94ee&units=metric`);
+      const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=e672e000839281b415d889d2a4fc94ee&units=metric`);
+
+      const currentWeatherData = await currentWeatherResponse.json();
+      const forecastData = await forecastResponse.json();
+
+      setCurrentWeather({ city: searchData.label, ...currentWeatherData });
+      setForecast({ city: searchData.label, ...forecastData });
+      setCity(searchData.label);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRefresh = () => {
+    setLoading(true);
+    // Trigger a new fetch based on the city or geolocation
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        handleOnSearchChange({ label: 'Your Location', value: `${latitude} ${longitude}` });
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+        setLoading(false);
+      }
+    );
+  };
+
+  useEffect(() => {
+    // Initial fetch based on geolocation
+    handleRefresh();
+  }, [city]);
+
   return (
-    <div className="container">
-      <Search onSearchChange={handleOnSearchChange}/>
-      {currentWeather && <CurrentWeather data={currentWeather}  />}
-      {forecast&&<Forecast data={forecast} />}
-      <NewApi/>
+    <div>
+      {loading ? (
+        <div  className='cont'>
+
+        <div class="loader">
+        <div class="wrapper">
+          <div class="circle"></div>
+          <div class="line-1"></div>
+          <div class="line-2"></div>
+          <div class="line-3"></div>
+          <div class="line-4"></div>
+        </div>
+      </div>
+        </div>
+        ) : (
+          <div className='container'>
+            <div className='inner'>
+          <Search onSearchChange={handleOnSearchChange} />
+          <button onClick={handleRefresh} className='btn'>Refresh</button>
+            </div>
+          {currentWeather && <CurrentWeather data={currentWeather} />}
+          {forecast && <Forecast data={forecast} />}
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;

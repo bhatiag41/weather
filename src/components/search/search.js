@@ -5,7 +5,7 @@ const Search = ({ onSearchChange }) => {
     const[search,setSearch]=useState(null);
 
     const loadOptions=(inputValue)=>{
-        return fetch(`${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${inputValue}`, GeoApiOptions)
+        return fetch(`${GEO_API_URL}/cities?namePrefix=${inputValue}`, GeoApiOptions)
         .then(response=>response.json())
     .then(response=>{
         return{
@@ -30,6 +30,8 @@ const Search = ({ onSearchChange }) => {
             borderRadius: '5px',
             border: '2px solid #ccc',
             boxShadow: state.isFocused ? '0 0 0 2px #212121' : '#757575',
+            width:'100%',
+            margin:"1rem"
         
         }),
         option: (provided, state) => ({
