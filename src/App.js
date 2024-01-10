@@ -40,6 +40,7 @@ const App = () => {
       },
       (error) => {
         console.error('Error getting location:', error);
+        window.alert("Error getting location")
         setLoading(false);
       }
     );
