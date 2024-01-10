@@ -33,7 +33,7 @@ const Forecast = ({ data }) => {
                 <div className="para-row top">
             <span className="para-label">Details</span>
           </div>
-      <Accordion allowZeroExpanded>
+      <Accordion allowZeroExpanded style={{animationFillMode: 'forwards'}}>
         {data.list.splice(0, 7).map((item, idx) => (
           <AccordionItem key={idx}>
             <AccordionItemHeading>
